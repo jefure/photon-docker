@@ -1,10 +1,9 @@
-version: '2'
 services:
   photon:
     build:
       context: .
       dockerfile: Dockerfile
-    image: thomasnordquist/photon-geocoder:latest
+    image: jefure/photon-geocoder:latest
     volumes:
       - data:/photon/photon_data
     ports:
