@@ -1,17 +1,16 @@
 #!/bin/bash
 
-
 # Download elasticsearch index
-if [ ! -d "/photon/photon_data/elasticsearch" ]; then
+if [ ! -d "/photon/photon_data/node_1" ]; then
     echo "Downloading search index"
 
     # Let graphhopper know where the traffic is coming from
-    USER_AGENT="docker: thomasnordquist/photon-geocoder"
-    wget --user-agent="$USER_AGENT" -O - http://download1.graphhopper.com/public/photon-db-latest.tar.bz2 | bzip2 -cd | tar x
+    USER_AGENT="docker: jefure/photon-geocoder"
+    wget --user-agent="$USER_AGENT" -O - https://download1.graphhopper.com/public/experimental/extracts/by-country-code/de/photon-db-latest.tar.bz2 | pbzip2 -cd | tar x
 fi
 
 # Start photon if elastic index exists
-if [ -d "/photon/photon_data/elasticsearch" ]; then
+if [ -d "/photon/photon_data/node_1" ]; then
     echo "Start photon"
     java -jar photon.jar $@
 else
